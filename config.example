@@ -1,0 +1,22 @@
+apikey = 'qwertyuiopasdfghjklzxcvbnm1234567890'
+
+startsecond = 0
+startminute = 0
+starthour = 10
+startday = 15 
+startmonth = 11
+startyear = 2013
+
+endsecond = 0
+endminute = 0
+endhour = 10
+endday = 25
+endmonth = 11
+endyear = 2013
+
+minlat = 40
+maxlat = 49
+
+minlon = 70
+maxlon = 89
+
