@@ -1,1 +1,23 @@
-playing with data from pressureNet! :)
+This script downloads JSON data from pressureNet.io
+
+Usage:
+1. Generate an API key here:
+http://pressurenet.io/developers/register/
+
+2. git clone git@github.com:NatalieBlack/pressure.git
+cd pressure
+touch config.py
+
+3. In config.py, fill in your API key and the parameters (dates, longitude, latitude) for the data you want to download.  See config.example for formatting.
+
+4. python download.py
+
+The results will be saved as json files in the 'data' directory.
+
+See further API documentation here:
+http://pressurenet.io/static/docs/pressureNET_Live_API_2_1.pdf
+
+Requirements:
+requests
+arrow
+tz_local
