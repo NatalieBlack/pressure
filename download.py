@@ -16,13 +16,16 @@ def make_call(s, f, data):
     r = requests.get('https://pressurenet.io/live', params=params)
 
     print "Request made to " + r.url
+    print arrow.get(str(s/1000)).format('MMMM-DD-YYYY:HH:mm:ss') + " to " + arrow.get(str(f/1000)).format('MMMM-DD-YYYY:HH:mm:ss')
     print "Status: {}".format(r.status_code)
-    print "{} items downloaded".format(len(r.json()))
+    if r.status_code == 200:
+        print "{} items downloaded".format(len(r.json()))
 
-    if len(r.json()) > 0:
-        data += r.json()
+        if len(r.json()) > 0:
+            data += r.json()
 
 stime = arrow.get(datetime.datetime(startyear, startmonth, startday, starthour, startminute, startsecond, tzinfo=get_localzone()))
+origstart = stime
 
 ftime = arrow.get(datetime.datetime(endyear, endmonth, endday, endhour, endminute, endsecond, tzinfo=get_localzone()))
 
@@ -46,7 +49,7 @@ ftimestamp = ftime.timestamp * 1000
 make_call(stimestamp, ftimestamp, data)
 
 fn = os.path.join('data', '{startdate}_{enddate}_{minlat}-{maxlat}_{minlon}-{maxlon}.json'.format(
-        startdate = stime.format('MMMM-DD-YYYY:HH:mm:ss'),
+        startdate = origstart.format('MMMM-DD-YYYY:HH:mm:ss'),
          enddate = ftime.format('MMMM-DD-YYYY:HH:mm:ss'),
          minlat = minlat, maxlat = maxlat, 
          minlon = minlon, maxlon = maxlon
